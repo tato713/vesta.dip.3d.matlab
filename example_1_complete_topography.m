@@ -21,6 +21,8 @@ topo(:,:)=double(earth(length(earth(:,1,1)):-1:1,:,1));
 % southern the lowest index value. By default, images are readed from up to 
 % down. 
 
+clear earth
+
 topo = imresize(topo,0.05);     % Resize the map to make it easy to process
                                 % You can set the interpolation method see
                                 % help
