@@ -66,4 +66,4 @@ surf2stl('earth.stl', x, y, z)
 figure;
 surf(x,y,z);        % Shows the 3d view of the model.
 axis vis3d
-axis square
+axis equal
