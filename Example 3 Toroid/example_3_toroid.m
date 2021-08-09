@@ -32,7 +32,7 @@ phivec = linspace(0,2*pi,max_long);
 [ph,et] = meshgrid(phivec,etavec);
 
 % All the measures are in mm. STL files are adimensional, but it is widely
-% acepted to use the unit as mm for most of the slicers and CAD apps.
+% accepted to use the unit as mm for most of the slicers and CAD apps.
 
 Di=19;              % Inner diameter. In a ring is where it goes the finger
 thick=3;            % Is the widgh of the cut section
@@ -54,13 +54,18 @@ deep=0.1*thick;     % The deep of the carving image. It is referenced to
 % to "extruding" function, you just need to change "-topo" for "+topo" in
 % the following 3 lines:
 
-x = (sin(et).*(R1-topo.*deep)+R0).*cos(ph) ;    
-y = -(sin(et).*(R1-topo.*deep)+R0).*sin(ph);
-z = -cos(et).*(R2-topo.*deep);
+ova=0.1;        % Compensation to make it more oval, make it 0 for pure 
+                % ellipsoid.
+                
+    
+
+x = (sin(et).*(R1-topo.*deep+abs(sin(et*4-pi/2)+1)/2*R1*ova)+R0).*cos(ph) ;    
+y = -(sin(et).*(R1-topo.*deep+abs(sin(et*4-pi/2)+1)/2*R1*ova)+R0).*sin(ph);
+z = -cos(et).*(R2-topo.*deep+abs(sin(et*4-pi/2)+1)/2*R2*ova);
 
 
 
-surf2stl('toroid.stl', x, y, z)     % Export the STL
+surf2stl('toroid_cmp.stl', x, y, z)     % Export the STL
 
 % figure;           % Uncomment these lines to get the 3d model view after
 % surf(x,y,z);      % the stl in made. This function doesn't work on Octave

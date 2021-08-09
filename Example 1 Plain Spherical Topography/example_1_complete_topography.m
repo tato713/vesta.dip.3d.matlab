@@ -12,7 +12,7 @@ close all
 
 
 
-earth=imread('gebco_08_rev_elev_21600x10800.png');  % Load the file as an 
+earth=imread('earth_topo.png');  % Load the file as an 
                                                     % image.
 
 topo(:,:)=double(earth(length(earth(:,1,1)):-1:1,:,1)); 
